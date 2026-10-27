@@ -8,28 +8,15 @@ import lombok.Data;
 @Table(name = "vagas_monitoria")
 public class VagaMonitoria {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        private String disciplina;
-        private String nomeMonitor;
-        private Integer vagasTotais;
-        private Integer vagasOcupadas;
-        private Boolean aberta;
-
-        public void inscreverAluno(){
-            if(!this.aberta || this.vagasOcupadas >= this.vagasTotais){
-                throw new RuntimeException("inscrições encerradas para essa monitoria");
-            }
-
-            this.vagasOcupadas++;
-
-            if(this.vagasOcupadas == this.vagasTotais){
-                this.aberta = false;
-            }
-
-        }
+    private String disciplina;
+    private String nomeMonitor;
+    private Integer vagasTotais;
+    private Integer vagasOcupadas = 0;
+    private Boolean aberta = true;
 
 
 
